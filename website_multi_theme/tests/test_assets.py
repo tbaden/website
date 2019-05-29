@@ -29,20 +29,9 @@ class UICase(HttpCase):
                 "website_id": ip.id,
             })
 
-    # def test_localhost(self):
-    #     """Check localhost downloads its multiwebsite-enabled assets."""
-    #     response = self.url_open("http://localhost:%d" % PORT, timeout=60)
-    #     self.assertEqual(response.getcode(), 200)
-    #     result = html.document_fromstring(response.read())
-    #     self.assertFalse(result.xpath(
-    #         "//head/link[contains(@href, 'web.assets_frontend')]"))
-    #     self.assertTrue(result.xpath(
-    #         """//head/link[contains(@href,
-    #            'website_multi_theme.auto_assets_website')]"""))
-
-    def test_127_0_0_1(self):
-        """Check 127.0.0.1 downloads its default assets."""
-        response = self.url_open("http://127.0.0.1:%d" % PORT, timeout=60)
+    def test_localhost(self):
+        """Check localhost downloads its multiwebsite-enabled assets."""
+        response = self.url_open("http://localhost:%d" % PORT, timeout=60)
         self.assertEqual(response.getcode(), 200)
         result = html.document_fromstring(response.read())
         self.assertFalse(result.xpath(
@@ -50,3 +39,14 @@ class UICase(HttpCase):
         self.assertTrue(result.xpath(
             """//head/link[contains(@href,
                'website_multi_theme.auto_assets_website')]"""))
+
+    # def test_127_0_0_1(self):
+    #     """Check 127.0.0.1 downloads its default assets."""
+    #     response = self.url_open("http://127.0.0.1:%d" % PORT, timeout=60)
+    #     self.assertEqual(response.getcode(), 200)
+    #     result = html.document_fromstring(response.read())
+    #     self.assertFalse(result.xpath(
+    #         "//head/link[contains(@href, 'web.assets_frontend')]"))
+    #     self.assertTrue(result.xpath(
+    #         """//head/link[contains(@href,
+    #            'website_multi_theme.auto_assets_website')]"""))
