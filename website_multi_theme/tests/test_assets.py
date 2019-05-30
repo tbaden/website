@@ -42,6 +42,11 @@ class UICase(HttpCase):
 
     def test_127_0_0_1(self):
         """Check 127.0.0.1 downloads its default assets."""
+        ip = self.env["website"].create({
+            "name": "127.0.0.1",
+            "domain": "127.0.0.1",
+            "multi_theme_id": False,
+        })
         response = self.url_open("http://127.0.0.1:%d" % PORT, timeout=60)
         self.assertEqual(response.getcode(), 200)
     #     result = html.document_fromstring(response.read())
